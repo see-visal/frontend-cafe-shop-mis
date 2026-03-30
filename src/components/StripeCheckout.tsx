@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
     Elements,
@@ -18,10 +18,10 @@ const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 
 interface StripeCheckoutProps {
     clientSecret: string;
-    onSuccess: () => void | Promise<void>;
+    onSuccess: (paymentIntentId?: string) => void | Promise<void>;
 }
 
-function CheckoutForm({ onSuccess }: { onSuccess: () => void | Promise<void> }) {
+function CheckoutForm({ onSuccess }: { onSuccess: (paymentIntentId?: string) => void | Promise<void> }) {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -51,7 +51,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void | Promise<void> }) 
             setMessage(error.message || "An unexpected error occurred.");
         } else if (paymentIntent && paymentIntent.status === "succeeded") {
             // Record payment and move to done (payment before barista starts)
-            await onSuccess();
+            await onSuccess(paymentIntent.id);
         }
 
         setIsLoading(false);

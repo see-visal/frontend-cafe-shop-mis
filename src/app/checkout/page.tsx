@@ -209,10 +209,12 @@ export default function CheckoutPage() {
                             amount: finalTotal,
                             transactionRef: (result.data as { hash?: string })?.hash ?? undefined,
                         }).unwrap();
+                        dispatch(clearCart());
                         setStep("done");
                     } catch (e: unknown) {
                         const msg = (e as { data?: { message?: string } })?.data?.message;
                         if (msg?.toLowerCase().includes("already paid")) {
+                            dispatch(clearCart());
                             setStep("done"); // idempotent — webhook already processed
                         } else {
                             setKhqrAutoDetected(false);
@@ -323,8 +325,8 @@ export default function CheckoutPage() {
        Called when customer clicks the primary CTA button on the bag page.
        - Validates the form.
        - Places the order on the backend → gets orderId.
-       - For CASH / CARD: immediately calls pay() and jumps to done.
-       - For QR_CODE:     advances to "scan" step so user can scan the QR.
+       - For CASH:        registers the counter payment and jumps to done.
+       - For QR / CARD:   advances to the payment step for the final confirmation.
     ───────────────────────────────────────────────────────────────────── */
     const handlePlaceOrder = async () => {
         setShowAllErrors(true);
@@ -359,8 +361,9 @@ export default function CheckoutPage() {
                 discountAmount: promoDiscount > 0 ? promoDiscount : undefined,
             }).unwrap();
 
+            const orderTotal = typeof order.totalPrice === "number" ? order.totalPrice : discountedTotal;
             setPlacedOrderId(order.id);
-            setFinalTotal(discountedTotal);
+            setFinalTotal(orderTotal);
             setClientSecret(order.clientSecret || null);
 
             if (paymentMethod === "QR_CODE" || paymentMethod === "CARD") {
@@ -371,7 +374,7 @@ export default function CheckoutPage() {
                 await pay({
                     orderId: order.id,
                     paymentMethod: "CASH",
-                    amount: discountedTotal,
+                    amount: orderTotal,
                 }).unwrap();
                 dispatch(clearCart());
                 setStep("done");
@@ -438,13 +441,13 @@ export default function CheckoutPage() {
                         <AmountDueHeader amount={finalTotal} orderId={placedOrderId} />
                         <StripeCheckout
                             clientSecret={clientSecret}
-                            onSuccess={async () => {
+                            onSuccess={async (paymentIntentId) => {
                                 try {
                                     await pay({
                                         orderId: placedOrderId!,
                                         paymentMethod: "CARD",
                                         amount: finalTotal,
-                                        transactionRef: undefined,
+                                        transactionRef: paymentIntentId,
                                     }).unwrap();
                                 } catch (e) {
                                     const msg = (e as { data?: { message?: string } })?.data?.message;
@@ -539,6 +542,7 @@ export default function CheckoutPage() {
                                         paymentMethod: "CARD",
                                         amount: finalTotal,
                                     }).unwrap();
+                                    dispatch(clearCart());
                                     setStep("done");
                                 } catch (e: unknown) {
                                     const msg = (e as { data?: { message?: string } })?.data?.message;
