@@ -1,0 +1,78 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="60" x2="1440" y2="920" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F6F4EC"/>
+      <stop offset="0.44" stop-color="#EEF3E8"/>
+      <stop offset="1" stop-color="#D9E6D0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(296 180) rotate(22.7) scale(412 312)">
+      <stop stop-color="#F1C77B" stop-opacity="0.9"/>
+      <stop offset="0.48" stop-color="#F1C77B" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#F1C77B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1265 208) rotate(134.307) scale(410 304)">
+      <stop stop-color="#53754A" stop-opacity="0.68"/>
+      <stop offset="0.52" stop-color="#53754A" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#53754A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hillA" x1="820" y1="400" x2="1260" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6A8A5A"/>
+      <stop offset="1" stop-color="#425A39"/>
+    </linearGradient>
+    <linearGradient id="hillB" x1="960" y1="360" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FB07E"/>
+      <stop offset="1" stop-color="#53754A"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="980" y1="506" x2="1304" y2="784" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="blur60" x="934" y="302" width="520" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="38"/>
+    </filter>
+    <filter id="blur32" x="72" y="592" width="588" height="284" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <rect width="1600" height="980" fill="url(#sun)"/>
+  <rect width="1600" height="980" fill="url(#orb)"/>
+
+  <path d="M844 276C992 244 1126 262 1236 334C1347 407 1426 510 1482 648C1526 756 1565 834 1600 884V980H728C748 906 766 826 784 748C804 661 810 585 798 520C786 453 802 372 844 276Z" fill="url(#hillA)"/>
+  <path d="M1038 330C1174 318 1288 350 1388 426C1490 504 1560 616 1600 760V980H920C944 910 966 840 982 770C1006 668 1014 572 1002 480C994 416 1004 366 1038 330Z" fill="url(#hillB)" fill-opacity="0.88"/>
+  <path d="M980 512C1068 468 1156 454 1240 480C1326 508 1402 572 1462 682C1386 712 1302 730 1204 734C1110 740 1022 720 942 676C934 616 946 562 980 512Z" fill="url(#mist)"/>
+
+  <g filter="url(#blur60)" opacity="0.44">
+    <circle cx="1194" cy="562" r="184" fill="#C8D9BC"/>
+  </g>
+  <g filter="url(#blur32)" opacity="0.5">
+    <path d="M116 734C208 682 308 660 416 668C512 676 574 706 616 744C556 786 486 812 406 822C320 832 236 824 156 796L116 734Z" fill="#F8F4EA"/>
+  </g>
+
+  <g opacity="0.32">
+    <circle cx="1088" cy="150" r="11" fill="#FFFFFF"/>
+    <circle cx="1142" cy="198" r="8" fill="#FFFFFF"/>
+    <circle cx="1190" cy="130" r="6" fill="#FFFFFF"/>
+    <circle cx="1248" cy="184" r="14" fill="#FFFFFF"/>
+    <circle cx="1318" cy="148" r="9" fill="#FFFFFF"/>
+  </g>
+
+  <g opacity="0.22" stroke="#385035" stroke-width="2.2" stroke-linecap="round">
+    <path d="M1324 206C1288 270 1272 346 1278 432"/>
+    <path d="M1324 212C1284 192 1242 190 1202 212"/>
+    <path d="M1316 264C1360 244 1402 246 1440 274"/>
+    <path d="M1262 330C1218 332 1184 350 1160 386"/>
+    <path d="M1302 360C1346 358 1386 374 1422 408"/>
+    <path d="M1250 444C1208 454 1176 478 1154 516"/>
+  </g>
+
+  <g opacity="0.18" fill="#FFFFFF">
+    <path d="M1418 214C1456 238 1478 274 1484 322C1438 322 1400 308 1372 278C1380 252 1396 230 1418 214Z"/>
+    <path d="M1496 328C1534 350 1558 388 1568 442C1520 438 1480 420 1450 388C1458 364 1474 344 1496 328Z"/>
+    <path d="M1452 470C1492 492 1518 528 1528 578C1478 576 1438 558 1406 526C1414 502 1430 482 1452 470Z"/>
+  </g>
+
+  <path d="M0 980V838C126 754 246 712 366 710C504 706 626 762 738 880L824 980H0Z" fill="#F7F3E8" fill-opacity="0.84"/>
+  <path d="M0 980V892C154 804 314 774 480 794C626 812 760 874 882 980H0Z" fill="#FFFFFF" fill-opacity="0.42"/>
+</svg>
