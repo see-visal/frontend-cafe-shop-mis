@@ -98,7 +98,7 @@ export default function LoginPage() {
               <Sparkles size={12} />
               Members Lounge
             </p>
-            <h1 className={styles.title}>Brew Better Mornings</h1>
+            <h1 className={styles.title}>Better Mornings with SalSee</h1>
             <p className={styles.subtitle}>
               Login to track orders, collect loyalty points, and jump back into your
               personalized coffee ritual.
